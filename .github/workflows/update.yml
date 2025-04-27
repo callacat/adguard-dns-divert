@@ -3,21 +3,22 @@ name: 更新域名列表
 on:
   schedule:
     - cron: '0 0 * * *'  # 每天 UTC 时间 0 点运行，即北京时间 8 点
-  workflow_dispatch:     # 手动触发
+  workflow_dispatch:  # 允许手动触发
   push:
-    branches: [ main ]   # 推送到 main 分支时触发
+    paths:
+      - 'config/**'  # 当配置文件发生变化时触发
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
       contents: write  # 关键！允许写入仓库
-
+    
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
       
-      - name: 设置 Python
+      - name: 设置Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
@@ -27,9 +28,25 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml
       
+      - name: 创建必要的目录和文件
+        run: |
+          mkdir -p config dist
+          # 创建默认的国内DNS服务器文件（如果不存在）
+          if [ ! -f config/cn_dns.txt ]; then
+            echo "https://doh.pub/dns-query" > config/cn_dns.txt
+            echo "https://dns.alidns.com/dns-query" >> config/cn_dns.txt
+          fi
+          # 创建默认的国外DNS服务器文件（如果不存在）
+          if [ ! -f config/foreign_dns.txt ]; then
+            echo "https://1.1.1.1/dns-query" > config/foreign_dns.txt
+            echo "https://8.8.8.8/dns-query" >> config/foreign_dns.txt
+          fi
+          # 创建自定义域名文件（如果不存在）
+          touch config/custom_cn_domains.txt
+          touch config/custom_foreign_domains.txt
+      
       - name: 生成配置文件
         run: |
-          cd $GITHUB_WORKSPACE
           python scripts/generate_config.py
       
       - name: 提交更新
@@ -37,4 +54,10 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add dist/*
-          git diff --quiet && git diff --staged --quiet || (git commit -m "自动更新域名列表 $(date +'%Y-%m-%d')" && git push)
+          git diff --quiet && git diff --staged --quiet || git commit -m "自动更新域名列表 $(date +'%Y-%m-%d')"
+      
+      - name: 推送更新
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
