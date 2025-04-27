@@ -10,6 +10,7 @@ import os
 import sys
 import json
 import logging
+import datetime
 from extract_domains import download_file, extract_domains_from_file, read_custom_domains
 
 # 配置日志
@@ -59,7 +60,7 @@ def generate_whitelist_config(cn_domains, foreign_domains, cn_dns, foreign_dns) 
     
     # 添加头部注释
     config_lines.append("# AdGuard Home DNS 分流配置 - 白名单模式")
-    config_lines.append("# 自动生成于 " + logger.handlers[0].formatter.formatTime(logging.LogRecord("", 0, "", 0, "", [], None)))
+    config_lines.append(f"# 自动生成于 {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     config_lines.append("# 白名单模式：命中国内域名走国内DNS，其他走国外DNS")
     config_lines.append("")
     
@@ -83,7 +84,7 @@ def generate_blacklist_config(cn_domains, foreign_domains, cn_dns, foreign_dns) 
     
     # 添加头部注释
     config_lines.append("# AdGuard Home DNS 分流配置 - 黑名单模式")
-    config_lines.append("# 自动生成于 " + logger.handlers[0].formatter.formatTime(logging.LogRecord("", 0, "", 0, "", [], None)))
+    config_lines.append(f"# 自动生成于 {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     config_lines.append("# 黑名单模式：命中国外域名走国外DNS，其他走国内DNS")
     config_lines.append("")
     
