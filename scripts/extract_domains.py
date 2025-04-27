@@ -34,6 +34,7 @@ logger = logging.getLogger('extract_domains')
 
 # 正则表达式
 DOMAIN_PATTERN = re.compile(r'^[a-zA-Z0-9][-a-zA-Z0-9]*(\.[a-zA-Z0-9][-a-zA-Z0-9]*)+$')
+DOMAIN_PREFIX_PATTERN = re.compile(r'^\.([a-zA-Z0-9][-a-zA-Z0-9]*(\.[a-zA-Z0-9][-a-zA-Z0-9]*)+)$')
 CLASH_DOMAIN_PATTERN = re.compile(r'.*(?:DOMAIN|domain)[,:][ ]*([a-zA-Z0-9][-a-zA-Z0-9]*(\.[a-zA-Z0-9][-a-zA-Z0-9]*)+)')
 CLASH_DOMAIN_SUFFIX_PATTERN = re.compile(r'.*(?:DOMAIN-SUFFIX|domain-suffix)[,:][ ]*([a-zA-Z0-9][-a-zA-Z0-9]*(\.[a-zA-Z0-9][-a-zA-Z0-9]*)+)')
 DNSMASQ_PATTERN = re.compile(r'server=/([^/]+)/')
@@ -61,7 +62,10 @@ def is_valid_domain(domain: str) -> bool:
     """验证域名是否有效"""
     if not domain or len(domain) > 253:
         return False
-    if domain.startswith('.') or domain.endswith('.'):
+    if domain.startswith('.'):
+        # 处理以点开头的域名（例如.example.com）
+        domain = domain[1:]
+    if domain.endswith('.'):
         return False
     if '..' in domain:  # 避免连续的点
         return False
@@ -99,6 +103,9 @@ def extract_domains_from_yaml(content: str) -> Set[str]:
         # 尝试直接匹配域名
         elif is_valid_domain(line):
             domains.add(line)
+        # 处理 .domain.com 格式
+        elif line.startswith('.') and is_valid_domain(line[1:]):
+            domains.add(line[1:])
         
         # 使用通用正则匹配
         else:
@@ -136,7 +143,7 @@ def extract_domains_from_yaml(content: str) -> Set[str]:
                 for item in data['payload']:
                     if isinstance(item, str):
                         # 检查是否是DOMAIN规则
-                        if 'DOMAIN,' in item.upper() or 'DOMAIN:' in item.upper():
+                        if item.startswith('DOMAIN,') or item.startswith('DOMAIN:'):
                             parts = re.split(r'[,:]', item, 1)
                             if len(parts) > 1:
                                 domain = parts[1].strip()
@@ -144,7 +151,7 @@ def extract_domains_from_yaml(content: str) -> Set[str]:
                                     domains.add(domain)
                         
                         # 检查是否是DOMAIN-SUFFIX规则
-                        elif 'DOMAIN-SUFFIX,' in item.upper() or 'DOMAIN-SUFFIX:' in item.upper():
+                        elif item.startswith('DOMAIN-SUFFIX,') or item.startswith('DOMAIN-SUFFIX:'):
                             parts = re.split(r'[,:]', item, 1)
                             if len(parts) > 1:
                                 domain = parts[1].strip()
@@ -185,7 +192,7 @@ def extract_domains_from_yaml(content: str) -> Set[str]:
                 for item in data['rules']:
                     if isinstance(item, str):
                         # 检查是否是DOMAIN规则
-                        if 'DOMAIN,' in item.upper() or 'DOMAIN:' in item.upper():
+                        if item.startswith('DOMAIN,') or item.startswith('DOMAIN:'):
                             parts = re.split(r'[,:]', item, 1)
                             if len(parts) > 1:
                                 domain = parts[1].strip()
@@ -193,7 +200,7 @@ def extract_domains_from_yaml(content: str) -> Set[str]:
                                     domains.add(domain)
                         
                         # 检查是否是DOMAIN-SUFFIX规则
-                        elif 'DOMAIN-SUFFIX,' in item.upper() or 'DOMAIN-SUFFIX:' in item.upper():
+                        elif item.startswith('DOMAIN-SUFFIX,') or item.startswith('DOMAIN-SUFFIX:'):
                             parts = re.split(r'[,:]', item, 1)
                             if len(parts) > 1:
                                 domain = parts[1].strip()
@@ -248,7 +255,7 @@ def extract_domains_from_yaml(content: str) -> Set[str]:
             for item in data:
                 if isinstance(item, str):
                     # 检查是否是DOMAIN规则
-                    if 'DOMAIN,' in item.upper() or 'DOMAIN:' in item.upper():
+                    if item.startswith('DOMAIN,') or item.startswith('DOMAIN:'):
                         parts = re.split(r'[,:]', item, 1)
                         if len(parts) > 1:
                             domain = parts[1].strip()
@@ -256,7 +263,7 @@ def extract_domains_from_yaml(content: str) -> Set[str]:
                                 domains.add(domain)
                     
                     # 检查是否是DOMAIN-SUFFIX规则
-                    elif 'DOMAIN-SUFFIX,' in item.upper() or 'DOMAIN-SUFFIX:' in item.upper():
+                    elif item.startswith('DOMAIN-SUFFIX,') or item.startswith('DOMAIN-SUFFIX:'):
                         parts = re.split(r'[,:]', item, 1)
                         if len(parts) > 1:
                             domain = parts[1].strip()
@@ -396,86 +403,144 @@ def extract_domains_from_gfwlist(content: str) -> Set[str]:
 def extract_domains_from_plain_text(content: str) -> Set[str]:
     """从普通文本格式的域名列表中提取域名"""
     domains = set()
+    header_passed = False
+    
     for line in content.splitlines():
         line = line.strip()
-        if line and not line.startswith('#'):
-            if is_valid_domain(line):
+        
+        # 跳过空行和注释
+        if not line or line.startswith('#'):
+            continue
+        
+        # 检查是否是头部信息部分
+        if not header_passed and "NAME:" in line:
+            # 可能是blackmatrix7的域名列表头部
+            header_passed = True
+            continue
+        
+        # 处理以点开头的域名（如.example.com）
+        if line.startswith('.'):
+            match = DOMAIN_PREFIX_PATTERN.match(line)
+            if match:
+                domain = match.group(1)
+                if is_valid_domain(domain):
+                    domains.add(domain)
+            continue
+        
+        # 直接的域名
+        if is_valid_domain(line):
+            domains.add(line)
+        else:
+            # 尝试匹配URL中的域名
+            match = URL_PATTERN.search(line)
+            if match:
+                domain = match.group(1)
+                if is_valid_domain(domain):
+                    domains.add(domain)
+    
+    return domains
+
+def extract_domains_from_blackmatrix7_domain_txt(content: str) -> Set[str]:
+    """从blackmatrix7的Domain.txt格式提取域名"""
+    domains = set()
+    header_section = True
+    
+    for line in content.splitlines():
+        line = line.strip()
+        
+        # 跳过空行
+        if not line:
+            continue
+        
+        # 跳过头部注释
+        if line.startswith('#'):
+            continue
+        
+        # 检查是否已经过了头部注释部分
+        if header_section and "DOMAIN:" in line:
+            header_section = False
+            continue
+        
+        # 处理正文部分
+        if not header_section:
+            # 检查是否是以点开头的域名（如.example.com）
+            if line.startswith('.'):
+                domain = line[1:]
+                if is_valid_domain(domain):
+                    domains.add(domain)
+            # 直接的域名
+            elif is_valid_domain(line):
                 domains.add(line)
-            else:
-                # 尝试匹配URL中的域名
-                match = URL_PATTERN.search(line)
-                if match:
-                    domain = match.group(1)
-                    if is_valid_domain(domain):
-                        domains.add(domain)
+    
     return domains
 
 def extract_domains_from_file(content: str, file_url: str) -> Set[str]:
     """根据文件类型提取域名"""
     file_name = file_url.split('/')[-1].lower()
+    domains = set()
     
     # 根据文件扩展名或内容判断文件类型
-    if file_name.endswith('.yaml') or file_name.endswith('.yml'):
+    if "proxy_domain.txt" in file_url.lower():
+        # 这是blackmatrix7项目中的Proxy_Domain.txt格式
+        domains = extract_domains_from_blackmatrix7_domain_txt(content)
+        logger.info(f"从blackmatrix7 Proxy_Domain.txt中提取到 {len(domains)} 个域名")
+    elif "chinamax_domain.txt" in file_url.lower() or "china_domain.txt" in file_url.lower():
+        # 这是blackmatrix7项目中的ChinaMax_Domain.txt或China_Domain.txt格式
+        domains = extract_domains_from_blackmatrix7_domain_txt(content)
+        logger.info(f"从blackmatrix7 ChinaMax_Domain.txt中提取到 {len(domains)} 个域名")
+    elif file_name.endswith('.yaml') or file_name.endswith('.yml'):
         domains = extract_domains_from_yaml(content)
         logger.info(f"从YAML文件中提取到 {len(domains)} 个域名")
-        return domains
     elif file_name.endswith('.conf'):
         domains = extract_domains_from_dnsmasq(content)
         logger.info(f"从dnsmasq配置文件中提取到 {len(domains)} 个域名")
-        return domains
     elif file_name == 'gfwlist.txt':
         domains = extract_domains_from_gfwlist(content)
         logger.info(f"从GFWList文件中提取到 {len(domains)} 个域名")
-        return domains
     elif '.list' in file_name:
-        # 先尝试作为Clash规则解析
-        domains = extract_domains_from_yaml(content)
-        if domains:
-            logger.info(f"从Clash规则列表中提取到 {len(domains)} 个域名")
-            return domains
-        # 如果没有提取到域名，再尝试作为普通文本解析
+        # 尝试作为普通文本解析
         domains = extract_domains_from_plain_text(content)
-        logger.info(f"从普通文本列表中提取到 {len(domains)} 个域名")
-        return domains
+        logger.info(f"从列表文件中提取到 {len(domains)} 个域名")
     else:
         # 尝试各种格式
         logger.info("未能确定文件类型，尝试多种格式解析")
-        domains = set()
         
-        # 尝试作为YAML解析
-        yaml_domains = extract_domains_from_yaml(content)
-        if yaml_domains:
-            logger.info(f"作为YAML解析提取到 {len(yaml_domains)} 个域名")
-            domains.update(yaml_domains)
+        # 尝试作为普通文本解析
+        text_domains = extract_domains_from_plain_text(content)
+        if text_domains:
+            logger.info(f"作为普通文本解析提取到 {len(text_domains)} 个域名")
+            domains.update(text_domains)
         
-        # 尝试作为dnsmasq配置解析
-        dnsmasq_domains = extract_domains_from_dnsmasq(content)
-        if dnsmasq_domains:
-            logger.info(f"作为dnsmasq配置解析提取到 {len(dnsmasq_domains)} 个域名")
-            domains.update(dnsmasq_domains)
-        
-        # 尝试作为AdBlock规则解析
-        adblock_domains = extract_domains_from_adblock(content)
-        if adblock_domains:
-            logger.info(f"作为AdBlock规则解析提取到 {len(adblock_domains)} 个域名")
-            domains.update(adblock_domains)
-        
-        # 尝试作为GFWList解析
-        try:
-            gfwlist_domains = extract_domains_from_gfwlist(content)
-            if gfwlist_domains:
-                logger.info(f"作为GFWList解析提取到 {len(gfwlist_domains)} 个域名")
-                domains.update(gfwlist_domains)
-        except:
-            pass
-        
-        # 最后尝试作为普通文本解析
-        if not domains:
-            plain_domains = extract_domains_from_plain_text(content)
-            logger.info(f"作为普通文本解析提取到 {len(plain_domains)} 个域名")
-            domains.update(plain_domains)
-        
-        return domains
+        # 如果普通文本解析提取的域名很少，尝试其他方式
+        if len(domains) < 10:
+            # 尝试作为YAML解析
+            yaml_domains = extract_domains_from_yaml(content)
+            if yaml_domains:
+                logger.info(f"作为YAML解析提取到 {len(yaml_domains)} 个域名")
+                domains.update(yaml_domains)
+            
+            # 尝试作为dnsmasq配置解析
+            dnsmasq_domains = extract_domains_from_dnsmasq(content)
+            if dnsmasq_domains:
+                logger.info(f"作为dnsmasq配置解析提取到 {len(dnsmasq_domains)} 个域名")
+                domains.update(dnsmasq_domains)
+            
+            # 尝试作为AdBlock规则解析
+            adblock_domains = extract_domains_from_adblock(content)
+            if adblock_domains:
+                logger.info(f"作为AdBlock规则解析提取到 {len(adblock_domains)} 个域名")
+                domains.update(adblock_domains)
+            
+            # 尝试作为GFWList解析
+            try:
+                gfwlist_domains = extract_domains_from_gfwlist(content)
+                if gfwlist_domains:
+                    logger.info(f"作为GFWList解析提取到 {len(gfwlist_domains)} 个域名")
+                    domains.update(gfwlist_domains)
+            except:
+                pass
+    
+    return domains
 
 def process_sources(sources: List[str]) -> Set[str]:
     """处理源列表，下载并提取域名"""
@@ -488,7 +553,7 @@ def process_sources(sources: List[str]) -> Set[str]:
             logger.info(f"从 {source} 中提取了 {len(domains)} 个域名")
             all_domains.update(domains)
         else:
-            logger.warning(f"下载 {source} 失败或内容为空")
+            logger.warning(f"下载 {url} 失败或内容为空")
     
     return all_domains
 
@@ -514,8 +579,24 @@ def read_custom_domains(file_path: str) -> Set[str]:
             if line and not line.startswith('#'):
                 if is_valid_domain(line):
                     domains.add(line)
+                elif line.startswith('.') and is_valid_domain(line[1:]):
+                    domains.add(line[1:])
     
     return domains
+
+def read_dns_servers(file_path: str, default_servers: List[str]) -> List[str]:
+    """读取DNS服务器列表"""
+    if not os.path.exists(file_path):
+        return default_servers
+    
+    servers = []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#'):
+                servers.append(line)
+    
+    return servers if servers else default_servers
 
 if __name__ == "__main__":
     # 这个脚本可以独立运行进行测试
