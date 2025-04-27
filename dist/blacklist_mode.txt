@@ -1,5 +1,5 @@
 # AdGuard Home DNS 分流配置 - 黑名单模式
-# 自动生成于 2025-04-27 09:23:55
+# 自动生成于 2025-04-27 09:30:14
 # 黑名单模式：命中国外域名走国外DNS，其他走国内DNS
 
 # 默认上游DNS服务器（国内）
@@ -8,7 +8,7 @@ https://doh.pub/dns-query
 223.5.5.5
 119.29.29.29
 
-# 国外域名规则（共 7093 个域名）
+# 国外域名规则（共 7094 个域名）
 [/000webhost.com/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
 [/030buy.com/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
 [/0rz.tw/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
@@ -1844,6 +1844,7 @@ https://doh.pub/dns-query
 [/everipedia.org/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
 [/evozi.com/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
 [/evschool.net/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
+[/example.com/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
 [/exblog.co.jp/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
 [/exblog.jp/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
 [/exchristian.hk/]quic://dns.nextdns.io:853 quic://dns.adguard.com:784 quic://dns.nextdns.io:853 quic://dns.adguard.com:784 https://dns.cloudflare.com/dns-query https://dns.google/dns-query https://dns.adguard-dns.com/dns-query tls://dns.cloudflare.com tls://dns.google tls://dns.adguard-dns.com
