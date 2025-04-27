@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '0 0 * * *'  # 每天 UTC 时间 0 点运行，即北京时间 8 点
   workflow_dispatch:  # 允许手动触发
+  push:
+    branches: [ main ]  # 当推送到主分支时也触发
 
 jobs:
   update:
@@ -23,20 +25,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml
       
-      - name: 运行更新脚本
+      - name: 生成配置文件
         run: |
-          chmod +x scripts/update.sh
-          ./scripts/update.sh
+          cd $GITHUB_WORKSPACE
+          python scripts/generate_config.py
       
       - name: 提交更新
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add dist/*
           git diff --quiet && git diff --staged --quiet || git commit -m "自动更新域名列表 $(date +'%Y-%m-%d')"
-      
-      - name: 推送更新
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          git push
