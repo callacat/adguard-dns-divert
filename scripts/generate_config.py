@@ -89,13 +89,13 @@ def generate_whitelist_config(cn_domains, foreign_domains, cn_dns, foreign_dns) 
     config_lines.append(f"# 自动生成于 {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     config_lines.append("# 白名单模式：命中国内域名走国内DNS，其他走国外DNS")
     config_lines.append("")
-    
+
     # 添加默认上游DNS服务器（国外）
     config_lines.append("# 默认上游DNS服务器（国外）")
     for dns in foreign_dns:
         config_lines.append(dns)
     config_lines.append("")
-    
+
     # 添加国内域名规则
     config_lines.append(f"# 国内域名规则（共 {len(cn_domains)} 个域名）")
     for domain in sorted(cn_domains):
@@ -113,13 +113,13 @@ def generate_blacklist_config(cn_domains, foreign_domains, cn_dns, foreign_dns) 
     config_lines.append(f"# 自动生成于 {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     config_lines.append("# 黑名单模式：命中国外域名走国外DNS，其他走国内DNS")
     config_lines.append("")
-    
+
     # 添加默认上游DNS服务器（国内）
     config_lines.append("# 默认上游DNS服务器（国内）")
     for dns in cn_dns:
         config_lines.append(dns)
     config_lines.append("")
-    
+
     # 添加国外域名规则
     config_lines.append(f"# 国外域名规则（共 {len(foreign_domains)} 个域名）")
     for domain in sorted(foreign_domains):
@@ -154,12 +154,12 @@ def main():
     logger.info("开始提取国外域名...")
     foreign_domains = process_sources(foreign_sources, os.path.join('config', 'custom_foreign_domains.txt'))
     
-    # 确保没有重复的域名
-    common_domains = cn_domains.intersection(foreign_domains)
-    if common_domains:
-        logger.warning(f"发现 {len(common_domains)} 个重复的域名，从国外域名列表中移除")
-        foreign_domains -= common_domains
-    
+    # 境内和境外分别去重
+    common_cn_foreign_domains = cn_domains.intersection(foreign_domains)
+    if common_cn_foreign_domains:
+        logger.warning(f"发现 {len(common_cn_foreign_domains)} 个重复的国内和国外域名，从国外域名列表中移除")
+        foreign_domains -= common_cn_foreign_domains
+
     # 生成配置文件
     logger.info("生成白名单模式配置文件...")
     whitelist_config = generate_whitelist_config(cn_domains, foreign_domains, cn_dns, foreign_dns)
