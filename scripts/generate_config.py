@@ -11,7 +11,12 @@ import sys
 import json
 import logging
 import datetime
-from extract_domains import download_file, extract_domains_from_file, read_custom_domains
+import urllib.request
+from urllib.error import URLError
+
+# 避免循环导入
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+import extract_domains
 
 # 配置日志
 logging.basicConfig(
@@ -28,11 +33,32 @@ def load_config() -> dict:
     config_path = os.path.join('config', 'config.json')
     
     if not os.path.exists(config_path):
-        logger.error(f"配置文件 {config_path} 不存在")
-        sys.exit(1)
-    
-    with open(config_path, 'r', encoding='utf-8') as f:
-        config = json.load(f)
+        # 如果配置文件不存在，创建默认配置
+        config = {
+            "sources": {
+                "cn_domains": [
+                    "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml",
+                    "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml",
+                    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml",
+                    "https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf"
+                ],
+                "foreign_domains": [
+                    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Domain.yaml",
+                    "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml",
+                    "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml",
+                    "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
+                ]
+            }
+        }
+        
+        os.makedirs(os.path.dirname(config_path), exist_ok=True)
+        with open(config_path, 'w', encoding='utf-8') as f:
+            json.dump(config, f, indent=2, ensure_ascii=False)
+        logger.info(f"已创建默认配置文件 {config_path}")
+    else:
+        # 读取现有配置
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = json.load(f)
     
     return config
 
@@ -41,14 +67,14 @@ def process_sources(sources, custom_file=None) -> set:
     all_domains = set()
     
     for source in sources:
-        content = download_file(source)
+        content = extract_domains.download_file(source)
         if content:
-            domains = extract_domains_from_file(content, source)
+            domains = extract_domains.extract_domains_from_file(content, source)
             logger.info(f"从 {source} 中提取了 {len(domains)} 个域名")
             all_domains.update(domains)
     
     if custom_file and os.path.exists(custom_file):
-        custom_domains = read_custom_domains(custom_file)
+        custom_domains = extract_domains.read_custom_domains(custom_file)
         logger.info(f"从自定义文件中读取了 {len(custom_domains)} 个域名")
         all_domains.update(custom_domains)
     
@@ -71,7 +97,7 @@ def generate_whitelist_config(cn_domains, foreign_domains, cn_dns, foreign_dns) 
     config_lines.append("")
     
     # 添加国内域名规则
-    config_lines.append("# 国内域名规则")
+    config_lines.append(f"# 国内域名规则（共 {len(cn_domains)} 个域名）")
     for domain in sorted(cn_domains):
         dns_list = ' '.join(cn_dns)
         config_lines.append(f"[/{domain}/]{dns_list}")
@@ -95,7 +121,7 @@ def generate_blacklist_config(cn_domains, foreign_domains, cn_dns, foreign_dns) 
     config_lines.append("")
     
     # 添加国外域名规则
-    config_lines.append("# 国外域名规则")
+    config_lines.append(f"# 国外域名规则（共 {len(foreign_domains)} 个域名）")
     for domain in sorted(foreign_domains):
         dns_list = ' '.join(foreign_dns)
         config_lines.append(f"[/{domain}/]{dns_list}")
@@ -108,8 +134,14 @@ def main():
     config = load_config()
     
     # 获取DNS服务器
-    cn_dns = config.get('cn_dns', ["https://doh.pub/dns-query", "https://dns.alidns.com/dns-query"])
-    foreign_dns = config.get('foreign_dns', ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"])
+    default_cn_dns = ["https://doh.pub/dns-query", "https://dns.alidns.com/dns-query"]
+    default_foreign_dns = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"]
+    
+    cn_dns = extract_domains.read_dns_servers(os.path.join('config', 'cn_dns.txt'), default_cn_dns)
+    foreign_dns = extract_domains.read_dns_servers(os.path.join('config', 'foreign_dns.txt'), default_foreign_dns)
+    
+    logger.info(f"使用国内DNS服务器: {cn_dns}")
+    logger.info(f"使用国外DNS服务器: {foreign_dns}")
     
     # 获取域名源
     cn_sources = config.get('sources', {}).get('cn_domains', [])
