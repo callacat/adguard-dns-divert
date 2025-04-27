@@ -157,8 +157,9 @@ def main():
     # 境内和境外分别去重
     common_cn_foreign_domains = cn_domains.intersection(foreign_domains)
     if common_cn_foreign_domains:
-        logger.warning(f"发现 {len(common_cn_foreign_domains)} 个重复的国内和国外域名，从国外域名列表中移除")
-        foreign_domains -= common_cn_foreign_domains
+        logger.warning(f"发现 {len(common_cn_foreign_domains)} 个重复的国内和国外域名")
+        # 保留 cn_domains 中的重复域名，不移除
+        foreign_domains = foreign_domains - common_cn_foreign_domains
 
     # 生成配置文件
     logger.info("生成白名单模式配置文件...")
