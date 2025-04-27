@@ -1,8 +1,12 @@
 {
-  "cn_dns_enabled": true,
-  "foreign_dns_enabled": true,
-  "use_default_cn_dns": true,
-  "use_default_foreign_dns": true,
+  "cn_dns": [
+    "https://doh.pub/dns-query",
+    "https://dns.alidns.com/dns-query"
+  ],
+  "foreign_dns": [
+    "https://1.1.1.1/dns-query",
+    "https://8.8.8.8/dns-query"
+  ],
   "sources": {
     "cn_domains": [
       "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml",
