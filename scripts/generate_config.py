@@ -182,10 +182,6 @@ def main():
     foreign_domains = remove_duplicates_in_list(foreign_domains)
     logger.info(f"去重后国外域名数量: {len(foreign_domains)}")
     
-    # 调试特定域名
-    debug_domain(cn_domains, "wangdu.site")
-    debug_domain(foreign_domains, "wangdu.site")
-    
     # 生成配置文件
     logger.info("生成白名单模式配置文件...")
     whitelist_config = generate_whitelist_config(cn_domains, foreign_domains, cn_dns, foreign_dns)
