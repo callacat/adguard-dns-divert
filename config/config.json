@@ -1,0 +1,20 @@
+{
+  "cn_dns_enabled": true,
+  "foreign_dns_enabled": true,
+  "use_default_cn_dns": true,
+  "use_default_foreign_dns": true,
+  "sources": {
+    "cn_domains": [
+      "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml",
+      "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml",
+      "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml",
+      "https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf"
+    ],
+    "foreign_domains": [
+      "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Domain.yaml",
+      "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml",
+      "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml",
+      "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
+    ]
+  }
+}
