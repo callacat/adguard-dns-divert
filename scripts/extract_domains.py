@@ -59,17 +59,21 @@ def download_file(url: str) -> str:
         return ""
 
 def is_valid_domain(domain: str) -> bool:
-    """验证域名是否有效"""
+    """验证域名是否有效，并且不是纯IPv4地址"""
     if not domain or len(domain) > 253:
         return False
     if domain.startswith('.'):
-        # 处理以点开头的域名（例如.example.com）
         domain = domain[1:]
     if domain.endswith('.'):
         return False
-    if '..' in domain:  # 避免连续的点
+    if '..' in domain:
         return False
-    # 基本格式检查
+
+    # 新增：排除IPv4地址
+    ipv4_pattern = re.compile(r'^(\d{1,3}\.){3}\d{1,3}$')
+    if ipv4_pattern.match(domain):
+        return False
+
     return bool(DOMAIN_PATTERN.match(domain))
 
 def extract_domains_from_yaml(content: str) -> Set[str]:
