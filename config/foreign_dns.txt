@@ -1,2 +1,10 @@
-https://1.1.1.1/dns-query
-https://8.8.8.8/dns-query
+quic://dns.nextdns.io:853
+quic://dns.adguard.com:784
+quic://dns.nextdns.io:853
+quic://dns.adguard.com:784
+https://dns.cloudflare.com/dns-query
+https://dns.google/dns-query
+https://dns.adguard-dns.com/dns-query
+tls://dns.cloudflare.com
+tls://dns.google
+tls://dns.adguard-dns.com
