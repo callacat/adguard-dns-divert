@@ -1,12 +1,12 @@
 # AdGuard Home DNS 分流配置 - 黑名单模式
-# 自动生成于 2025-04-27 09:01:57
+# 自动生成于 2025-04-27 09:11:03
 # 黑名单模式：命中国外域名走国外DNS，其他走国内DNS
 
 # 默认上游DNS服务器（国内）
 https://doh.pub/dns-query
 https://dns.alidns.com/dns-query
 
-# 国外域名规则
+# 国外域名规则（共 7089 个域名）
 [/000webhost.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/030buy.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/0rz.tw/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
@@ -407,7 +407,6 @@ https://dns.alidns.com/dns-query
 [/api.proxlet.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/api.together.xyz/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/api.viu.now.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
-[/api.waqi.info/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/apiary.io/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/apigee.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/apk-dl.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
@@ -435,7 +434,6 @@ https://dns.alidns.com/dns-query
 [/appspot.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/appsto.re/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/aptoide.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
-[/aqi.aqicn.org/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/ar.hao123.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/archive.fo/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/archive.is/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
@@ -481,7 +479,6 @@ https://dns.alidns.com/dns-query
 [/aspi.org.au/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/aspistrategist.org.au/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/assembla.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
-[/assets-priconne-redive-us.akamaized.net/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/assimp.org/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/astrill.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/atc.org.au/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
@@ -1362,7 +1359,6 @@ https://dns.alidns.com/dns-query
 [/cusu.hk/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/cutout.pro/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/cutscenes.net/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
-[/cvws.icloud-content.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/cw.com.tw/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/cws-hulu.conviva.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/cws.conviva.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
@@ -1499,7 +1495,6 @@ https://dns.alidns.com/dns-query
 [/dessci.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/destroy-china.jp/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/deutsche-welle.de/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
-[/developer.apple.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/deviantart.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/deviantart.net/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/devio.us/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
@@ -3721,7 +3716,6 @@ https://dns.alidns.com/dns-query
 [/localpresshk.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/lockestek.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/logbot.net/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
-[/login.microsoftonline.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/logiqx.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/logmein.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/logos.com.hk/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
@@ -5753,7 +5747,6 @@ https://dns.alidns.com/dns-query
 [/tenzinpalmo.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/terabox.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/teraboxcdn.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
-[/testflight.apple.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/tew.org/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/textnow.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/textnow.me/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
@@ -6461,7 +6454,6 @@ https://dns.alidns.com/dns-query
 [/vod-dash-uk-live.akamaized.net/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/vod-thumb-uk-live.akamaized.net/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/vod360.net/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
-[/voice.telephony.goog/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/voicettank.org/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/vot.org/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
 [/vovo2000.com/]https://1.1.1.1/dns-query https://8.8.8.8/dns-query
