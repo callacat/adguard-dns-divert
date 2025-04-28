@@ -1,3 +1,9 @@
 wangdu.site
 cbtgba.site
 wwkejishe.top
+*.us
+*.ca
+*.de
+*.li
+*.ch
+*.eu
