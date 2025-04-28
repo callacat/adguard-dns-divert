@@ -583,6 +583,9 @@ def read_custom_domains(file_path: str) -> Set[str]:
             if line and not line.startswith('#'):
                 if is_valid_domain(line):
                     domains.add(line)
+                elif line.isalpha() and len(line) <= 5:
+                    # ⭐ 新增：允许 cn hk mo 等国家TLD
+                    domains.add(line)
                 elif line.startswith('.') and is_valid_domain(line[1:]):
                     domains.add(line[1:])
     
