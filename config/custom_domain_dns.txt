@@ -1,0 +1,27 @@
+# 自定义域名DNS配置文件
+# 格式: domain: dns1, dns2, dns3
+# 可以为特定域名指定专用的DNS服务器
+
+# OpenAI 使用专用DNS
+#openai.com: https://1.1.1.1/dns-query, https://8.8.8.8/dns-query, https://208.67.222.222/dns-query
+#api.openai.com: https://1.1.1.1/dns-query, https://8.8.8.8/dns-query
+
+# GitHub 使用更快的DNS
+#github.com: https://101.101.101.101/dns-query, https://1.1.1.1/dns-query
+#raw.githubusercontent.com: https://101.101.101.101/dns-query, https://1.1.1.1/dns-query
+
+# 游戏服务使用游戏专用DNS
+#steamcommunity.com: https://185.222.222.222/dns-query, https://45.11.45.11/dns-query
+#store.steampowered.com: https://185.222.222.222/dns-query, https://45.11.45.11/dns-query
+
+# 本地服务使用内网DNS
+#nas.local: 192.168.1.1, 192.168.1.2
+#router.local: 192.168.1.1
+
+# 特殊域名使用特定DNS
+#example.com: tcp://8.8.8.8, tcp://1.1.1.1
+#test.domain: https://custom.dns.server/dns-query
+
+# 国家/地区TLD也可以自定义
+#hk: https://dns.hk-resolver.com/dns-query
+#jp: https://dns.google/dns-query
