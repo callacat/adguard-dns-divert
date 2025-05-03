@@ -25,3 +25,5 @@
 # 国家/地区TLD也可以自定义
 #hk: https://dns.hk-resolver.com/dns-query
 #jp: https://dns.google/dns-query
+
+tieba.com: https://dns.alidns.com/dns-query, https://doh.360.cn/dns-query, 223.5.5.5, 119.29.29.29
