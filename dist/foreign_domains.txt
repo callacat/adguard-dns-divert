@@ -1599,6 +1599,7 @@ dowei.org
 dowjones.com
 download.aircrack-ng.org
 download.cnet.com
+dpdns.org
 dphk.org
 dpool.top
 dpp.org.tw
@@ -1821,6 +1822,7 @@ etsy.com
 ettoday.net
 etvonline.hk
 eu
+eu.org
 eucasino.com
 eulam.com
 eurekavpt.com
@@ -3557,6 +3559,7 @@ koornk.com
 koranmandarin.com
 korea.net
 korenan2.com
+koyeb.app
 kpkuang.org
 kqes.net
 kr
@@ -6147,6 +6150,7 @@ tvants.com
 tvb.com
 tvboxnow.com
 tvbs.com.tw
+tvfix.org
 tvider.com
 tvmost.com.hk
 tvplayvideos.com
