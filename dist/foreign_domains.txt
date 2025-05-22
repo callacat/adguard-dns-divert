@@ -810,6 +810,7 @@ broadpressinc.com
 brockbbs.com
 brookings.edu
 browserleaks.com
+browserleaks.net
 browserleaks.org
 brucewang.net
 brutaltgp.com
@@ -3268,6 +3269,7 @@ iphonix.fr
 ipicture.ru
 ipinfo.io
 ipjetable.net
+ipleak.net
 ipobar.com
 ipoock.com
 iportal.me
@@ -5650,6 +5652,7 @@ suprememastertv.com
 surfeasy.com
 surfeasy.com.au
 surfshark.com
+surfsharkdns.com
 suroot.com
 surrenderat20.net
 sustainability.google
