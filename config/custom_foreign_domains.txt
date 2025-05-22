@@ -8,6 +8,9 @@ koyeb.app
 tdm.com.mo
 browserleaks.com
 browserleaks.org
+browserleaks.net
+ipleak.net
+surfsharkdns.com
 tvfix.org
 wangdu.site
 wwkejishe.top
