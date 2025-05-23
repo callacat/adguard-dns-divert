@@ -3390,6 +3390,7 @@ jbtalks.cc
 jbtalks.com
 jbtalks.my
 jcpenney.com
+jdshipin.com
 jdwsy.com
 jeanyim.com
 jetos.com
@@ -6162,6 +6163,7 @@ tvbs.com.tw
 tvfix.org
 tvider.com
 tvmost.com.hk
+tvpass.org
 tvplayvideos.com
 tvunetworks.com
 tw
