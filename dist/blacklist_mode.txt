@@ -1,5 +1,5 @@
 # AdGuard Home DNS 分流配置 - 黑名单模式
-# 自动生成于 2025-06-05 01:00:03
+# 自动生成于 2025-06-05 08:43:02
 # 黑名单模式：命中国外域名走国外DNS，其他走国内DNS
 # 包含自定义域名DNS规则
 
@@ -10,10 +10,11 @@ https://doh.360.cn/dns-query
 119.29.29.29
 
 #==================================================
-# 自定义域名DNS规则（共 3 个域名）
+# 自定义域名DNS规则（共 4 个域名）
 # 这些规则优先级最高，会覆盖下面的国内/国外规则
 #==================================================
 [/as174.de/]https://dns.alidns.com/dns-query https://doh.360.cn/dns-query 223.5.5.5 119.29.29.29
+[/edu.cn/]https://dns.alidns.com/dns-query https://doh.360.cn/dns-query 223.5.5.5 119.29.29.29
 [/flowus.cn/]https://dns.alidns.com/dns-query https://doh.360.cn/dns-query 223.5.5.5 119.29.29.29
 [/tieba.baidu.com/]https://dns.alidns.com/dns-query https://doh.360.cn/dns-query 223.5.5.5 119.29.29.29
 
