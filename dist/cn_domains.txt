@@ -12917,7 +12917,6 @@ app-measurement-cn.com
 app-measurement.com
 app-router.com
 app-store.dji.com
-app.xygdcm.com
 app001.com
 app0772.com
 app111.com
@@ -62723,7 +62722,6 @@ klmy118114.com
 klmybbs.com
 klmymarathon.com
 klmyssn.com
-klmyyun.chinavas.com
 klner.com
 klniu.com
 kloong.com
