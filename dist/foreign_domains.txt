@@ -31,7 +31,6 @@
 1984.city
 1984bbs.com
 1984bbs.org
-1989report.hkja.org.hk
 1991way.com
 1998cdp.org
 1bao.org
@@ -396,7 +395,6 @@ apkpure.com
 apkpure.net
 aplusvpn.com
 app-measurement.net
-app.heywire.com
 appadvice.com
 appbrain.com
 appdownloader.net
@@ -477,7 +475,6 @@ autodraw.com
 av-e-body.com
 av.com
 av.movie
-av.nightlife141.com
 av01.tv
 avaaz.org
 avbody.tv
@@ -570,14 +567,9 @@ bbs.cantonese.asia
 bbs.ecstart.com
 bbs.hanminzu.org
 bbs.huasing.org
-bbs.kimy.com.tw
 bbs.morbell.com
-bbs.netbig.com
-bbs.ozchinese.com
-bbs.qmzdd.com
 bbs.skykiwi.com
 bbs.sou-tong.org
-bbs.tuitui.info
 bbsdigest.com
 bbsfeed.com
 bbsland.com
@@ -702,8 +694,6 @@ blockcn.com
 blockedbyhk.com
 blockless.com
 blocktempo.com
-blog.calibre-ebook.com
-blog.cnyes.com
 blog.de
 blog.excite.co.jp
 blog.foolsmountain.com
@@ -714,11 +704,9 @@ blog.martinoei.com
 blog.ontrac.com
 blog.qooza.hk
 blog.ranxiang.com
-blog.sina.com.tw
 blog.sogoo.org
 blog.soylent.com
 blog.taragana.com
-blog.xuite.net
 blog.youthwant.com.tw
 blogblog.com
 blogcatalog.com
@@ -1008,7 +996,6 @@ cftfc.com
 cgdepot.org
 cgst.edu
 ch
-ch.shvoong.com
 challenges.cloudflare.com
 change.org
 changeip.name
@@ -1163,7 +1150,6 @@ civitai.com
 cixiaoya.club
 ck101.com
 cl
-cl.d0z.net
 clarionproject.org
 classicalguitarblog.net
 claude.ai
@@ -1176,7 +1162,6 @@ clearsurance.com
 clearwisdom.net
 clementine-player.org
 client-api.arkoselabs.com
-cling.omy.sg
 clinica-tibet.ru
 clipconverter.cc
 clipfish.de
@@ -1204,13 +1189,9 @@ cn
 cn-proxy.com
 cn.fmnnow.com
 cn.freeones.com
-cn.giganews.com
-cn.ibtimes.com
 cn.nytstyle.com
 cn.shafaqna.com
 cn.uncyclopedia.wikia.com
-cn.voa.mobi
-cn2.streetvoice.com
 cn6.eu
 cna.com.tw
 cnabc.com
@@ -1285,7 +1266,6 @@ copilot.cloud.microsoft
 copilot.microsoft.com
 corumcollege.com
 cos-moe.com
-cosmic.monar.ch
 cosplayjav.pl
 costco.com
 cotweet.com
@@ -1393,7 +1373,6 @@ daiphapinfo.net
 dajiyuan.com
 dajiyuan.de
 dajiyuan.eu
-dajusha.baywords.com
 dalailama-archives.org
 dalailama.com
 dalailama.mn
@@ -1707,7 +1686,6 @@ echofon.com
 ecimg.tw
 ecministry.net
 economist.com
-ecsm.vs.com
 ecstart.com
 edge.api.brightcove.com
 edgecastcdn.net
@@ -1890,7 +1868,6 @@ fallenark.com
 falsefire.com
 falun-co.org
 falun-ny.net
-falun.caltech.edu
 falunart.org
 falunasia.info
 falunau.org
@@ -2003,7 +1980,6 @@ fileserve.com
 filesor.com
 fillthesquare.org
 filmingfortibet.org
-filmy.olabloga.pl
 filthdump.com
 financetwitter.com
 finchvpn.com
@@ -2066,13 +2042,8 @@ form.new
 forms.new
 forum.baby-kingdom.com
 forum.cyberctm.com
-forum.idsam.com
-forum.my903.com
 forum.mymaji.com
-forum.omy.sg
 forum.palmislife.com
-forum.setty.com.tw
-forum.sina.com.hk
 forum.slime.com.tw
 forum4hk.com
 forums-free.com
@@ -2391,7 +2362,6 @@ go.sony.com
 go141.com
 go5.dev
 goagent.biz
-goagent.codeplex.com
 goagentplus.com
 gobet.cc
 godaddy.com
@@ -2849,7 +2819,6 @@ hecaitou.net
 hechaji.com
 heeact.edu.tw
 hegre-art.com
-heix.pp.ru
 helixstudios.net
 helloandroid.com
 helloavgirls.com
@@ -2968,7 +2937,6 @@ hkptu.org
 hkreporter.com
 hkreporter.loved.hk
 hku.hk
-hkupop.hku.hk
 hkusu.net
 hkvwet.com
 hkwcc.org.hk
@@ -3352,7 +3320,6 @@ jan.ai
 jandyx.com
 janwongphoto.com
 japan-whores.com
-japanfirst.asianfreeforum.com
 japanhdv.com
 japantimes.co.jp
 japonx.com
@@ -3785,7 +3752,6 @@ m-sport.co.uk
 m-team.cc
 m.hkgalden.com
 m.me
-m.slandr.net
 m8008.com
 ma.hao123.com
 macgamestore.com
@@ -4263,9 +4229,7 @@ newpppp.com
 newrelic.com
 news.cnyes.com
 news.msn.com.tw
-news.omy.sg
 news.sina.com.hk
-news.sina.com.tw
 news.sinchew.com.my
 news.singtao.ca
 news.tvbs.com.tw
@@ -4415,8 +4379,6 @@ nvdst.com
 nvquan.org
 nvtongzhisheng.org
 nwtca.org
-ny.stgloballink.com
-ny.visiontimes.com
 nyaa.eu
 nyaa.si
 nybooks.com
@@ -4477,7 +4439,6 @@ okx.com
 olabloga.pl
 old-cat.net
 old.honeynet.org
-old.nabble.com
 olehd.com
 olehdtv.com
 olelive.com
@@ -4707,7 +4668,6 @@ picasaweb.com
 picidae.net
 picjs.xyz
 picturedip.com
-pictures.playboy.com
 picturesocial.com
 picuki.com
 pigav.com
@@ -4887,7 +4847,6 @@ pscdn.co
 pscp.tv
 pshvpn.com
 psiphon.ca
-psiphon.civisec.org
 psiphon3.com
 psiphontoday.com
 pstatic.net
@@ -5320,7 +5279,6 @@ shooshtime.com
 shop2000.com.tw
 shopee.tw
 shopping.com
-showbiz.omy.sg
 showhaotu.com
 showtime.jp
 showwe.tw
@@ -5531,7 +5489,6 @@ squirly.info
 squirrelvpn.com
 srocket.us
 ss-link.com
-ss.carryzhou.com
 ss.pythonic.life
 ssglobal.co
 ssglobal.me
@@ -5622,7 +5579,6 @@ studentsforafreetibet.org
 stumbleupon.com
 stupidvideos.com
 stweetly.com
-subacme.rerouted.org
 substack.com
 successfn.com
 sueddeutsche.de
@@ -5681,7 +5637,6 @@ szetowah.org.hk
 t-g.com
 t.co
 t.me
-t.orzdream.com
 t35.com
 t66y.com
 t91y.com
@@ -5771,7 +5726,6 @@ tdesktop.com
 tdm.com.mo
 teachparentstech.org
 teamamericany.com
-tech2.in.com
 technews.tw
 techspot.com
 techviz.net
@@ -5990,7 +5944,6 @@ tiktokv.us
 tiltbrush.com
 timdir.com
 time.com
-times.hinet.net
 timesnownews.com
 timsah.com
 timtales.com
@@ -6044,7 +5997,6 @@ topshareware.com
 topsy.com
 toptip.ca
 toptoon.net
-tor.blingblingsquad.net
 tor.updatestar.com
 tora.to
 torcn.com
@@ -6073,7 +6025,6 @@ tr
 tracfone.com
 tradingview.com
 traffichaus.com
-trans.wenweipo.com
 translate.goog
 transparency.org
 travelinkcard.com
@@ -6116,7 +6067,6 @@ tubeislam.com
 tubepornclassic.com
 tubestack.com
 tubewolf.com
-tui.orzdream.com
 tuibeitu.net
 tuidang.net
 tuidang.org
@@ -6174,7 +6124,6 @@ tw.gigacircle.com
 tw.hao123.com
 tw.streetvoice.com
 tw.tomonews.net
-tw.voa.mobi
 tw01.org
 twaitter.com
 twapperkeeper.com
@@ -6379,11 +6328,9 @@ uscnpm.org
 use.fontawesome.com
 usefreevpn.com
 usembassy.gov
-userapi.nytlog.com
 usercontent.goog
 users.skynet.be
 usfk.mil
-ushuarencity.echainhost.com
 usinfo.state.gov
 usma.edu
 usmc.mil
@@ -6437,7 +6384,6 @@ vaticannews.va
 vatn.org
 vcf-online.org
 vcfbuilder.org
-vds.rightster.com
 vegasred.com
 velkaepocha.sk
 venbbs.com
@@ -6460,8 +6406,6 @@ victimsofcommunism.org
 vid.me
 vidble.com
 video.aol.com
-video.ap.org
-video.fdbox.com
 video.foxbusiness.com
 videobam.com
 videodetective.com
@@ -6499,7 +6443,6 @@ vizvaz.com
 vjav.com
 vjmedia.com.hk
 vllcs.org
-vlog.xuite.net
 vmixcore.com
 vmpsoft.com
 vn
@@ -6701,7 +6644,6 @@ wheretowatch.com
 whichav.com
 whippedass.com
 whispersystems.org
-whitebear.freebearblog.org
 whodns.xyz
 whoer.net
 whotalking.com
@@ -6709,7 +6651,6 @@ whylover.com
 whyx.org
 widevine.com
 wikaba.com
-wiki.cnitter.com
 wiki.esu.im
 wiki.gamerp.jp
 wiki.kfd.me
@@ -6821,7 +6762,6 @@ wuyanblog.com
 wwe.com
 wwitv.com
 wwkejishe.top
-www.abclite.net
 www.ampproject.org
 www.antd.org
 www.aolnews.com
@@ -6837,12 +6777,10 @@ www.hustlercash.com
 www.idlcoyote.com
 www.imdb.com
 www.kindleren.com
-www.lamenhu.com
 www.lib.virginia.edu
 www.m-sport.co.uk
 www.monlamit.org
 www.nbc.com
-www.orchidbbs.com
 www.owind.com
 www.oxid.it
 www.s4miniarchive.com
@@ -6850,9 +6788,7 @@ www.sciencemag.org
 www.skype.com
 www.tablesgenerator.com
 www.taiwanonline.cc
-www.taup.org.tw
 www.thechinastory.org
-www.wangruowang.org
 www.websnapr.com
 www.zensur.freerk.com
 www1.biz
