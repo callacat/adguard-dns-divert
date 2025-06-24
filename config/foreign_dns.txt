@@ -1,10 +1,2 @@
-quic://dns.nextdns.io:853
-quic://dns.adguard.com:784
-quic://dns.nextdns.io:853
-quic://dns.adguard.com:784
-https://dns.cloudflare.com/dns-query
-https://dns.google/dns-query
-https://dns.adguard-dns.com/dns-query
-tls://dns.cloudflare.com
-tls://dns.google
-tls://dns.adguard-dns.com
+https://666.cloudflare-gateway.com/dns-query
+https://dns64.dns.google/dns-query
