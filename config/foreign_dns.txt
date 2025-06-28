@@ -1,2 +1,1 @@
-https://666.cloudflare-gateway.com/dns-query
-https://dns64.dns.google/dns-query
+192.168.1.135:1053
